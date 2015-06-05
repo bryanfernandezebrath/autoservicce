@@ -2,10 +2,12 @@
 
 use autoservice\Http\Requests;
 use autoservice\Http\Controllers\Controller;
-
 use Illuminate\Http\Request;
+use autoservice\Http\Entities\County;
 
-class OperationController extends Controller {
+
+
+class CountyController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -14,7 +16,8 @@ class OperationController extends Controller {
 	 */
 	public function index()
 	{
-		//
+        $departamentos = County::all();
+        return view('counties')->with(compact('departamentos'));
 	}
 
 	/**
@@ -24,7 +27,7 @@ class OperationController extends Controller {
 	 */
 	public function create()
 	{
-		//
+		return view('createcounty');
 	}
 
 	/**
@@ -80,44 +83,5 @@ class OperationController extends Controller {
 	{
 		//
 	}
-
-    /**
-     * @param $value1
-     * @param $value2
-     * @return string
-     */
-    public function sum($value1,$value2)
-    {
-     $total = $value1+$value2;
-        return view('operations.sum')->with(compact('value1','value2','total'));
-
-    }
-
-    public function subtraction($value1,$value2)
-    {
-        return $value1-$value2;
-
-    }
-
-    public function multiplication($value1,$value2)
-    {
-        return $value1*$value2;
-
-    }
-    public function division($value1,$value2)
-    {
-      if($value2==0)  {
-
-          return "NO SE PUEDE DIVIDR ENGTRE CERO    ";
-      }
-        else{
-            return $value1/$value2;
-        }
-
-
-    }
-
-
-
 
 }
